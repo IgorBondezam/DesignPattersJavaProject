@@ -1,0 +1,36 @@
+package org.example.designpatterns.creational.prototype;
+
+public class Circle extends Shape {
+    public int radius;
+
+    public Circle() {}
+
+    public Circle(Circle target) {
+        super(target);
+        if (target != null) {
+            this.radius = target.radius;
+        }
+    }
+
+    @Override
+    public Shape clone() {
+        return new Circle(this);
+    }
+
+    @Override
+    public void draw() {
+        System.out.println("Desenhando círculo:");
+        System.out.println("  Posição: (" + x + ", " + y + ")");
+        System.out.println("  Cor: " + color);
+        System.out.println("  Raio: " + radius);
+        System.out.println("  Representação: ⭕");
+    }
+
+    @Override
+    public boolean equals(Object object2) {
+        if (!(object2 instanceof Circle) || !super.equals(object2)) return false;
+        Circle shape2 = (Circle) object2;
+        return shape2.radius == radius;
+    }
+}
+
